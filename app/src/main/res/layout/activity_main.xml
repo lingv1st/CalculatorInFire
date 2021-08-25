@@ -4,15 +4,233 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="0dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="35dp">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline1"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.6" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.98" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.10" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/fire_227291_1920"
+            android:scaleType="centerCrop"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/appCompatButton1"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:text="@string/string_1"
+            app:layout_constraintBottom_toTopOf="@+id/appCompatButton0"
+            app:layout_constraintEnd_toStartOf="@+id/appCompatButton2"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatButton4" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/appCompatButton2"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:text="@string/string_2"
+            app:layout_constraintBottom_toTopOf="@+id/appCompatButtonEquality"
+            app:layout_constraintEnd_toStartOf="@+id/appCompatButton3"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/appCompatButton1"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatButton5"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/appCompatButton3"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:text="@string/string_3"
+            app:layout_constraintBottom_toTopOf="@+id/appCompatButtonEquality"
+            app:layout_constraintEnd_toStartOf="@+id/appCompatButtonMinus"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/appCompatButton2"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatButton6"
+            app:layout_constraintVertical_bias="1" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/appCompatButton4"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:text="@string/string_4"
+            app:layout_constraintBottom_toTopOf="@+id/appCompatButton1"
+            app:layout_constraintEnd_toStartOf="@+id/appCompatButton5"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatButton7" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/appCompatButton5"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:text="@string/string_5"
+            app:layout_constraintBottom_toTopOf="@+id/appCompatButton2"
+            app:layout_constraintEnd_toStartOf="@+id/appCompatButton6"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/appCompatButton4"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatButton8"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/appCompatButton6"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:text="@string/string_6"
+            app:layout_constraintBottom_toTopOf="@+id/appCompatButton3"
+            app:layout_constraintEnd_toStartOf="@+id/appCompatButtonMultiply"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/appCompatButton5"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatButton9"
+            app:layout_constraintVertical_bias="1" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/appCompatButton7"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:text="@string/string_7"
+            app:layout_constraintBottom_toTopOf="@+id/appCompatButton4"
+            app:layout_constraintEnd_toStartOf="@+id/appCompatButton8"
+            app:layout_constraintHorizontal_bias="0
+"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toTopOf="@+id/guideline1"
+            app:layout_constraintVertical_bias="1"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/appCompatButton8"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:text="@string/string_8"
+            app:layout_constraintBottom_toTopOf="@+id/appCompatButton5"
+            app:layout_constraintEnd_toStartOf="@+id/appCompatButton9"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/appCompatButton7"
+            app:layout_constraintTop_toTopOf="@+id/guideline1"
+            app:layout_constraintVertical_bias="1"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/appCompatButton9"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:text="@string/string_9"
+            app:layout_constraintBottom_toTopOf="@+id/appCompatButton6"
+            app:layout_constraintEnd_toStartOf="@+id/appCompatButtonDivision"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/appCompatButton8"
+            app:layout_constraintTop_toTopOf="@+id/guideline1"
+            app:layout_constraintVertical_bias="1"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/appCompatButton0"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:text="@string/string_0"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2"
+            app:layout_constraintEnd_toStartOf="@+id/appCompatButtonEquality"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatButton1"
+            app:layout_constraintVertical_bias="0" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/appCompatButtonPlus"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:text="@string/string_plus"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/appCompatButtonEquality"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatButtonMinus"
+            app:layout_constraintVertical_bias="1" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/appCompatButtonMinus"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:text="@string/string_minus"
+            app:layout_constraintBottom_toTopOf="@+id/appCompatButtonPlus"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/appCompatButton3"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatButtonMultiply"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/appCompatButtonMultiply"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:text="@string/string_multiply"
+            app:layout_constraintBottom_toTopOf="@+id/appCompatButtonMinus"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/appCompatButton6"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatButtonDivision" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/appCompatButtonDivision"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:text="@string/string_division"
+            app:layout_constraintBottom_toTopOf="@+id/appCompatButtonMultiply"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintStart_toEndOf="@+id/appCompatButton9"
+            app:layout_constraintTop_toTopOf="@+id/guideline1"
+            app:layout_constraintVertical_bias="@integer/material_motion_duration_long_1"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/appCompatButtonEquality"
+            android:layout_width="160dp"
+            android:layout_height="80dp"
+            android:text="@string/string_equality"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2"
+            app:layout_constraintEnd_toStartOf="@+id/appCompatButtonPlus"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/appCompatButton0"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatButton2"
+            app:layout_constraintVertical_bias="1" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
