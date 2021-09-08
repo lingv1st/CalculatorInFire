@@ -3,11 +3,14 @@ package fire.calculation.calculatorinfire;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -30,16 +33,61 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button buttonDivision;
     Button buttonEquality;
     private final static String CALC = "CALC";
+    private final static String TAG = "[LifeCycleOfActivity]";
 
     Calculation calculation = new Calculation();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                setContentView(R.layout.activity_main);
+        }
+
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            setContentView(R.layout.activity_main_landscape);
+        }
 
         initView();
         initListeners();
+        makeToast("onCreate");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        makeToast("onStart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        makeToast("onResume");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        makeToast("onPause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        makeToast("onStop");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        makeToast("onRestart");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        makeToast("onDestroy");
     }
 
     @Override
@@ -102,66 +150,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putSerializable(CALC, calculation);
+        makeToast("onSaveInstanceState");
     }
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         calculation = (Calculation) savedInstanceState.getSerializable(CALC);
-    }
-
-    private String expressionEquality(ArrayList<Character> expression) {
-
-        String str = "";
-        ArrayList<Float> num = new ArrayList<>();
-        num.clear();
-        char action = '1';
-
-        for (int i = 0; i < expression.size(); i++) {
-            if (expression.get(i) == '+' || expression.get(i) == '-' || expression.get(i) == '*' || expression.get(i) == '/') {
-
-                num.add(Float.parseFloat(str));
-                str = "";
-                action = expression.get(i);
-
-                for (int j = i + 1; j < expression.size(); j++) {
-                    str += expression.get(j);
-
-                }
-
-                num.add(Float.parseFloat(str));
-                break;
-
-            } else if (expression.get(i) != '=') {
-
-                str += expression.get(i);
-
-            }
-        }
-
-        float result = 0;
-        switch (action) {
-            case '+':
-                result = num.get(0) + num.get(1);
-                expression.clear();
-                break;
-            case '-':
-                result = num.get(0) - num.get(1);
-                expression.clear();
-                break;
-            case '*':
-                result = num.get(0) * num.get(1);
-                expression.clear();
-                break;
-            case '/':
-                result = num.get(0) / num.get(1);
-                expression.clear();
-                break;
-            default:
-                break;
-        }
-
-        return String.valueOf(result);
+        textView.setText(calculation.getMainRepresentation());
+        makeToast("onRestoreInstanceState");
     }
 
     private void initListeners() {
@@ -199,6 +196,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonMultiply = findViewById(R.id.buttonMultiply);
         buttonDivision = findViewById(R.id.buttonDivision);
         buttonEquality = findViewById(R.id.buttonEquality);
+    }
+
+    private void makeToast(String message) {
+        Log.d(TAG, message);
     }
 
     @Override
