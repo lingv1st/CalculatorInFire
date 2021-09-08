@@ -28,9 +28,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button buttonDivision;
     Button buttonEquality;
 
-
-    ArrayList<Character> expression = new ArrayList<>();
-    String expresssionString;
+    Calculation calculation = new Calculation();
+//    ArrayList<Character> expression = new ArrayList<>();
+//    String expressionString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,69 +45,56 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button1:
-                expression.add('1');
-                updateTextView();
+                calculation.add('1');
                 break;
             case R.id.button2:
-                expression.add('2');
-                updateTextView();
+                calculation.add('2');
                 break;
             case R.id.button3:
-                expression.add('3');
-                updateTextView();
+                calculation.add('3');
                 break;
             case R.id.button4:
-                expression.add('4');
-                updateTextView();
+                calculation.add('4');
                 break;
             case R.id.button5:
-                expression.add('5');
-                updateTextView();
+                calculation.add('5');
                 break;
             case R.id.button6:
-                expression.add('6');
-                updateTextView();
+                calculation.add('6');
                 break;
             case R.id.button7:
-                expression.add('7');
-                updateTextView();
+                calculation.add('7');
                 break;
             case R.id.button8:
-                expression.add('8');
-                updateTextView();
+                calculation.add('8');
                 break;
             case R.id.button9:
-                expression.add('9');
-                updateTextView();
+                calculation.add('9');
                 break;
             case R.id.button0:
-                expression.add('0');
-                updateTextView();
+                calculation.add('0');
                 break;
             case R.id.buttonMinus:
-                expression.add('-');
-                updateTextView();
+                calculation.add('-');
                 break;
             case R.id.buttonPlus:
-                expression.add('+');
-                updateTextView();
+                calculation.add('+');
                 break;
             case R.id.buttonMultiply:
-                expression.add('*');
-                updateTextView();
+                calculation.add('*');
                 break;
             case R.id.buttonDivision:
-                expression.add('/');
-                updateTextView();
+                calculation.add('/');
                 break;
             case R.id.buttonEquality:
                 //textView.setText("=");
-                textView.setText(expressionEquality(expression));
+                textView.setText(calculation.calculate());
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + view.getId());
         }
 
+        textView.setText(calculation.getMainRepresentation());
     }
 
     private String expressionEquality(ArrayList<Character> expression) {
@@ -199,11 +186,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonMultiply = findViewById(R.id.buttonMultiply);
         buttonDivision = findViewById(R.id.buttonDivision);
         buttonEquality = findViewById(R.id.buttonEquality);
-    }
-
-    private void updateTextView() {
-        expresssionString = String.valueOf(expression);
-        textView.setText(expresssionString);
     }
 
     @Override
