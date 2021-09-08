@@ -1,8 +1,12 @@
 package fire.calculation.calculatorinfire;
 
-import java.util.ArrayList;
+import android.os.Parcelable;
 
-public class Calculation {
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Observable;
+
+public class Calculation implements Serializable {
 
     private ArrayList<Character> expression;
     private ArrayList<Float> expPart;

@@ -1,8 +1,10 @@
 package fire.calculation.calculatorinfire;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -27,10 +29,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button buttonMultiply;
     Button buttonDivision;
     Button buttonEquality;
+    private final static String CALC = "CALC";
 
     Calculation calculation = new Calculation();
-//    ArrayList<Character> expression = new ArrayList<>();
-//    String expressionString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +96,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         textView.setText(calculation.getMainRepresentation());
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable(CALC, calculation);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        calculation = (Calculation) savedInstanceState.getSerializable(CALC);
     }
 
     private String expressionEquality(ArrayList<Character> expression) {
