@@ -149,14 +149,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putSerializable(CALC, calculation);
+        outState.putParcelable(CALC, calculation);
         makeToast("onSaveInstanceState");
     }
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        calculation = (Calculation) savedInstanceState.getSerializable(CALC);
+        calculation = (Calculation) savedInstanceState.getParcelable(CALC);
         textView.setText(calculation.getMainRepresentation());
         makeToast("onRestoreInstanceState");
     }

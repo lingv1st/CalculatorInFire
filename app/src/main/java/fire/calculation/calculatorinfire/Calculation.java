@@ -1,12 +1,13 @@
 package fire.calculation.calculatorinfire;
 
+import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Observable;
 
-public class Calculation implements Serializable {
+public class Calculation implements Parcelable {
 
     private ArrayList<Character> expression;
     private ArrayList<Float> expPart;
@@ -19,6 +20,24 @@ public class Calculation implements Serializable {
         expPart = new ArrayList<>();
         calculated = false;
     }
+
+    protected Calculation(Parcel in) {
+        action = (char) in.readInt();
+        mainRepresentation = in.readString();
+        calculated = in.readByte() != 0;
+    }
+
+    public static final Creator<Calculation> CREATOR = new Creator<Calculation>() {
+        @Override
+        public Calculation createFromParcel(Parcel in) {
+            return new Calculation(in);
+        }
+
+        @Override
+        public Calculation[] newArray(int size) {
+            return new Calculation[size];
+        }
+    };
 
     public void add(char symbol) {
 
@@ -107,5 +126,17 @@ public class Calculation implements Serializable {
 
     public String getMainRepresentation() {
         return mainRepresentation;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt((int) action);
+        parcel.writeString(mainRepresentation);
+        parcel.writeByte((byte) (calculated ? 1 : 0));
     }
 }
