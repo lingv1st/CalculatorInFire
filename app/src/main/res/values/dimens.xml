@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="elementSize">80dp</dimen>
+    <dimen name="elementSizeByTwo">160dp</dimen>
+    <dimen name="elementSizeByThree">240dp</dimen>
+    <dimen name="elementSizeByFour">320dp</dimen>
+    <dimen name="textSize">12pt</dimen>
+    <dimen name="marginDefault">10dp</dimen>
+</resources>
