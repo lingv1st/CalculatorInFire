@@ -5,14 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -42,11 +38,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
 
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                setContentView(R.layout.activity_main);
+                setContentView(R.layout.activity_main_material);
         }
 
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            setContentView(R.layout.activity_main_landscape);
+            setContentView(R.layout.activity_main_material_landscape);
         }
 
         initView();
@@ -146,17 +142,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textView.setText(calculation.getMainRepresentation());
     }
 
+    //один
+
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putParcelable(CALC, calculation);
+        outState.putSerializable(CALC, calculation);
         makeToast("onSaveInstanceState");
     }
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        calculation = (Calculation) savedInstanceState.getParcelable(CALC);
+        calculation = (Calculation) savedInstanceState.getSerializable(CALC);
         textView.setText(calculation.getMainRepresentation());
         makeToast("onRestoreInstanceState");
     }
