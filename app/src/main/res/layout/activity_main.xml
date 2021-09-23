@@ -61,7 +61,7 @@
             android:layout_marginBottom="@dimen/marginDefault"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.52"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.5" />
@@ -71,15 +71,13 @@
             android:layout_width="@dimen/elementSizeByFour"
             android:layout_height="@dimen/elementSize"
             android:gravity="center_vertical|end"
-            android:text="123"
+            android:backgroundTint="@color/my_color_onPrimary"
 
             android:textSize="@dimen/textSize"
             app:layout_constraintBottom_toTopOf="@+id/guideline5"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/guideline4"
             app:layout_constraintTop_toTopOf="@+id/guideline1"
-            app:layout_constraintVertical_bias="0.5"
             app:layout_constraintVertical_chainStyle="packed" />
 
         <com.google.android.material.button.MaterialButton

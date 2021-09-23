@@ -3,7 +3,6 @@ package fire.calculation.calculatorinfire;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -37,13 +36,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                setContentView(R.layout.activity_main_material);
-        }
-
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            setContentView(R.layout.activity_main_material_landscape);
-        }
+        setContentView(R.layout.activity_main);
+//        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+//                setContentView(R.layout.activity_main);
+//        }
+//
+//        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//            setContentView(R.layout.activity_main_landscape);
+//        }
 
         initView();
         initListeners();

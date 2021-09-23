@@ -5,14 +5,13 @@ import android.os.Parcelable;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Observable;
 
 public class Calculation implements Parcelable {
 
-    private ArrayList<Character> expression;
-    private ArrayList<Float> expPart;
-    private char action;
-    private String mainRepresentation;
+    private ArrayList<Character> expression;    // выражение
+    private ArrayList<Float> expPart;           // часть выражения
+    private char action;                        // действие в выражении
+    private String mainRepresentation;          // строковое представление выражения
     private boolean calculated;
 
     Calculation() {
@@ -55,10 +54,13 @@ public class Calculation implements Parcelable {
      */
     private void separateExpressionParts() {
 
-        String str = "";
+        //String str = "";
+        StringBuilder stringBuilder = new StringBuilder();
         expPart.clear();
 
         if (calculated) { calculated = false; }
+
+
 
         for (int i = 0; i < expression.size(); i++) {
             if (expression.get(i) == '+'
@@ -66,22 +68,23 @@ public class Calculation implements Parcelable {
                     || expression.get(i) == '*'
                     || expression.get(i) == '/') {
 
-                expPart.add(Float.parseFloat(str));
-                str = "";
+                expPart.add(Float.parseFloat(String.valueOf(stringBuilder)));
+                //str = "";
                 action = expression.get(i);
 
                 for (int j = i + 1; j < expression.size(); j++) {
                     // Формируем строку с последовательностью чисел из оставшейся части выражения
-                    str += expression.get(j);
+                    //str += expression.get(j);
+                    stringBuilder.append(expression.get(j));
                 }
 
-                expPart.add(Float.parseFloat(str));
+                expPart.add(Float.parseFloat(String.valueOf(stringBuilder)));
                 break;
 
             } else if (expression.get(i) != '=') {
                 // Формируем строку с последовательностью чисел из первой части выражения
-                str += expression.get(i);
-
+                //str += expression.get(i);
+                stringBuilder.append(expression.get(i));
             }
         }
     }
