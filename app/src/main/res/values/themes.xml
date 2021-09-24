@@ -15,5 +15,12 @@
         <item name="srcCompat">@drawable/sun2138317</item>
         <item name="android:backgroundTint">@color/my_color_primaryVariant</item>
         <item name="android:textColor">@color/my_color_secondary</item>
+
+        <!-- Buttons. -->
+        <item name="android:insetLeft">@dimen/buttonInset</item>
+        <item name="android:insetTop">@dimen/buttonInset</item>
+        <item name="android:insetRight">@dimen/buttonInset</item>
+        <item name="android:insetBottom">@dimen/buttonInset</item>
+
     </style>
 </resources>
