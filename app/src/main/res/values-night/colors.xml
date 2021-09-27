@@ -9,11 +9,11 @@
     <color name="white">#FFFFFFFF</color>
     <color name="colorBackground">#050505</color>
 
-    <color name="my_color_primary">#ffb794</color>
-    <color name="my_color_primaryVariant">#ff995f</color>
-    <color name="my_color_onPrimary">#f8e6dc</color>
+    <color name="my_color_primary">#3c7386</color>
+    <color name="my_color_primaryVariant">#225a6f</color>
+    <color name="my_color_onPrimary">#f0f4f5</color>
 
-    <color name="my_color_secondary">#6f0044</color>
-    <color name="my_color_secondaryVariant">#4a113e</color>
-    <color name="my_color_onSecondary">#170513</color>
+    <color name="my_color_secondary">#121f2f</color>
+    <color name="my_color_secondaryVariant">#0e1726</color>
+    <color name="my_color_onSecondary">#05090f</color>
 </resources>

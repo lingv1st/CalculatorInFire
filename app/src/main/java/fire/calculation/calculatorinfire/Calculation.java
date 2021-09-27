@@ -3,27 +3,25 @@ package fire.calculation.calculatorinfire;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Observable;
 
 public class Calculation implements Parcelable {
 
-    private ArrayList<Character> expression;
-    private ArrayList<Float> expPart;
-    private char action;
-    private String mainRepresentation;
-    private boolean calculated;
+    private StringBuilder expression;   // выражение
+    private ArrayList<Float> expPart;   // часть выражения (слагаемые ...)
+    private char action;                // действие в выражении (+, -, *, /, ...)
+    private String expResult;           // результат вычисления выражения
+    private boolean calculated;         //
 
     Calculation() {
-        expression = new ArrayList<>();
+        expression = new StringBuilder();
         expPart = new ArrayList<>();
         calculated = false;
+        expResult = "";
     }
 
     protected Calculation(Parcel in) {
         action = (char) in.readInt();
-        mainRepresentation = in.readString();
         calculated = in.readByte() != 0;
     }
 
@@ -41,13 +39,15 @@ public class Calculation implements Parcelable {
 
     public void add(char symbol) {
 
+        //if (!expResult.isEmpty()) { clearExpResult(); }
+
         if (calculated) {
-            expression.clear();
+            expression.delete(0, expression.length());
+            clearExpResult();
             calculated = false;
         }
 
-        expression.add(symbol);
-        setMainRepresentation();
+        expression.append(symbol);
     }
 
     /**
@@ -55,33 +55,34 @@ public class Calculation implements Parcelable {
      */
     private void separateExpressionParts() {
 
-        String str = "";
+        StringBuilder stringBuilder = new StringBuilder();
         expPart.clear();
 
-        if (calculated) { calculated = false; }
+        if (calculated) {
+            calculated = false;
+        }
 
-        for (int i = 0; i < expression.size(); i++) {
-            if (expression.get(i) == '+'
-                    || expression.get(i) == '-'
-                    || expression.get(i) == '*'
-                    || expression.get(i) == '/') {
+        for (int i = 0; i < expression.length(); i++) {
+            if (expression.charAt(i) == '+'
+                    || expression.charAt(i) == '-'
+                    || expression.charAt(i) == '*'
+                    || expression.charAt(i) == '/') {
 
-                expPart.add(Float.parseFloat(str));
-                str = "";
-                action = expression.get(i);
+                expPart.add(Float.parseFloat(String.valueOf(stringBuilder)));
+                action = expression.charAt(i);
+                stringBuilder.delete(0, stringBuilder.length());
 
-                for (int j = i + 1; j < expression.size(); j++) {
+                for (int j = i + 1; j < expression.length(); j++) {
                     // Формируем строку с последовательностью чисел из оставшейся части выражения
-                    str += expression.get(j);
+                    stringBuilder.append(expression.charAt(j));
                 }
 
-                expPart.add(Float.parseFloat(str));
+                expPart.add(Float.parseFloat(String.valueOf(stringBuilder)));
                 break;
 
-            } else if (expression.get(i) != '=') {
+            } else if (expression.charAt(i) != '=') {
                 // Формируем строку с последовательностью чисел из первой части выражения
-                str += expression.get(i);
-
+                stringBuilder.append(expression.charAt(i));
             }
         }
     }
@@ -89,7 +90,7 @@ public class Calculation implements Parcelable {
     /**
      * Вычисляет значение выражения. После вычисления выражение очищается
      */
-    public String calculate() {
+    public void calculate() {
 
         this.separateExpressionParts();
 
@@ -112,20 +113,23 @@ public class Calculation implements Parcelable {
         }
 
         calculated = true;
-        setMainRepresentation(String.valueOf(result));
-        return mainRepresentation;
+        setExpResult(String.valueOf(result));
     }
 
-    private void setMainRepresentation() {
-        mainRepresentation = String.valueOf(expression);
+    public String getExpResult() {
+        return expResult;
     }
 
-    private void setMainRepresentation(String result) {
-        mainRepresentation = result;
+    public void setExpResult(String expResult) {
+        this.expResult = expResult;
     }
 
-    public String getMainRepresentation() {
-        return mainRepresentation;
+    public String clearExpResult() {
+        return expResult = "";
+    }
+
+    public String getExpressionString() {
+        return String.valueOf(expression);
     }
 
     @Override
@@ -134,9 +138,7 @@ public class Calculation implements Parcelable {
     }
 
     @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt((int) action);
-        parcel.writeString(mainRepresentation);
-        parcel.writeByte((byte) (calculated ? 1 : 0));
+    public void writeToParcel(Parcel dest, int flags) {
+
     }
 }

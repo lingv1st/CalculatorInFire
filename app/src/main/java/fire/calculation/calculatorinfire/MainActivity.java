@@ -3,16 +3,11 @@ package fire.calculation.calculatorinfire;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -41,13 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                setContentView(R.layout.activity_main);
-        }
-
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            setContentView(R.layout.activity_main_landscape);
-        }
+        setContentView(R.layout.activity_main);
 
         initView();
         initListeners();
@@ -136,14 +125,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 calculation.add('/');
                 break;
             case R.id.buttonEquality:
-                //textView.setText("=");
-                textView.setText(calculation.calculate());
+                calculation.calculate();
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + view.getId());
         }
-
-        textView.setText(calculation.getMainRepresentation());
+        if (calculation.getExpResult().isEmpty()) {
+            textView.setText(calculation.getExpressionString());
+        } else {
+            textView.setText(calculation.getExpResult());
+        }
     }
 
     @Override
@@ -157,7 +148,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         calculation = (Calculation) savedInstanceState.getParcelable(CALC);
-        textView.setText(calculation.getMainRepresentation());
+        textView.setText(calculation.getExpressionString());// getMainRepresentation());
         makeToast("onRestoreInstanceState");
     }
 
