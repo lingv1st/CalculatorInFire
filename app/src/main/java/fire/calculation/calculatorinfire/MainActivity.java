@@ -37,13 +37,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-//        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-//                setContentView(R.layout.activity_main);
-//        }
-//
-//        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-//            setContentView(R.layout.activity_main_landscape);
-//        }
 
         initView();
         initListeners();
@@ -132,30 +125,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 calculation.add('/');
                 break;
             case R.id.buttonEquality:
-                //textView.setText("=");
-                textView.setText(calculation.calculate());
+                calculation.calculate();
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + view.getId());
         }
-
-        textView.setText(calculation.getMainRepresentation());
+        if (calculation.getExpResult().isEmpty()) {
+            textView.setText(calculation.getExpressionString());
+        } else {
+            textView.setText(calculation.getExpResult());
+        }
     }
-
-    //один
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putSerializable(CALC, calculation);
+        outState.putParcelable(CALC, calculation);
         makeToast("onSaveInstanceState");
     }
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        calculation = (Calculation) savedInstanceState.getSerializable(CALC);
-        textView.setText(calculation.getMainRepresentation());
+        calculation = (Calculation) savedInstanceState.getParcelable(CALC);
+        textView.setText(calculation.getExpressionString());// getMainRepresentation());
         makeToast("onRestoreInstanceState");
     }
 
