@@ -15,5 +15,6 @@
     <string name="string_multiply">*</string>
     <string name="string_division">/</string>
     <string name="string_equality">=</string>
+    <string name="options">Options</string>
 
 </resources>
