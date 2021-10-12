@@ -87,13 +87,14 @@
             app:layout_constraintVertical_chainStyle="packed" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/options"
+            android:id="@+id/buttonSettings"
             android:layout_width="@dimen/elementSizeByFour"
             android:layout_height="@dimen/elementSize"
-            android:background="@color/white"
-            android:backgroundTint="@color/my_color_onPrimary"
-            android:gravity="center_vertical|end"
-            android:text="@string/options"
+            android:insetLeft="@dimen/buttonInset"
+            android:insetTop="@dimen/buttonInset"
+            android:insetRight="@dimen/buttonInset"
+            android:insetBottom="@dimen/buttonInset"
+            android:text="@string/settings"
             android:textAlignment="center"
             android:textSize="@dimen/textSize"
             app:layout_constraintBottom_toTopOf="@+id/guideline03"

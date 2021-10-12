@@ -66,31 +66,31 @@
             app:layout_constraintVertical_bias="0.5" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/options"
-            android:layout_height="@dimen/elementSize"
+            android:id="@+id/buttonSettings"
             android:layout_width="@dimen/elementSizeByFour"
-            android:gravity="center_vertical|end"
-            android:textSize="@dimen/textSize"
+            android:layout_height="@dimen/elementSize"
+            android:insetLeft="@dimen/buttonInset"
+            android:insetTop="@dimen/buttonInset"
+            android:insetRight="@dimen/buttonInset"
+            android:insetBottom="@dimen/buttonInset"
+            android:text="@string/settings"
             android:textAlignment="center"
-            android:text="@string/options"
-            android:background="@color/white"
-            android:backgroundTint="@color/my_color_onPrimary"
+            android:textSize="@dimen/textSize"
             app:layout_constraintBottom_toTopOf="@+id/guideline01"
             app:layout_constraintEnd_toStartOf="@+id/guideline05"
             app:layout_constraintStart_toStartOf="@+id/guideline04"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed"
-            app:layout_constraintVertical_bias="1.0"
-            />
+            app:layout_constraintVertical_bias="0.992"
+            app:layout_constraintVertical_chainStyle="packed" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/appCompatTextView"
             android:layout_width="@dimen/elementSizeByFour"
             android:layout_height="@dimen/elementSize"
-            android:gravity="center_vertical|end"
-            android:textSize="@dimen/textSize"
             android:background="@color/white"
             android:backgroundTint="@color/my_color_onPrimary"
+            android:gravity="center_vertical|end"
+            android:textSize="@dimen/textSize"
             app:layout_constraintBottom_toTopOf="@+id/guideline02"
             app:layout_constraintEnd_toStartOf="@+id/guideline05"
             app:layout_constraintStart_toStartOf="@+id/guideline04"

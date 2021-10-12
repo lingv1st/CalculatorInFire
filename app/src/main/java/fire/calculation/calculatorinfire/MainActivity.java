@@ -3,10 +3,13 @@ package fire.calculation.calculatorinfire;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -27,8 +30,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button buttonMultiply;
     Button buttonDivision;
     Button buttonEquality;
+    Button buttonSettings;
+
+    Resources.Theme currentTheme;
+
     private final static String CALC = "CALC";
     private final static String TAG = "[LifeCycleOfActivity]";
+    private final static String THEME = "THEME";
 
     Calculation calculation = new Calculation();
 
@@ -43,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         makeToast("onCreate");
     }
 
+    /* Проверки состояний жизненного цикла Activity
     @Override
     protected void onStart() {
         super.onStart();
@@ -78,6 +87,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onDestroy();
         makeToast("onDestroy");
     }
+    */
 
     @Override
     public void onClick(View view) {
@@ -127,6 +137,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.buttonEquality:
                 calculation.calculate();
                 break;
+            case R.id.buttonSettings:
+                Intent runSettings = new Intent(MainActivity.this, ActivitySettings.class);
+                currentTheme = getTheme();
+                runSettings.putExtra(THEME, String.valueOf(currentTheme));
+                startActivity(runSettings);
+                break;
             default:
                 throw new IllegalStateException("Unexpected value: " + view.getId());
         }
@@ -153,25 +169,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initListeners() {
-        button1.setOnClickListener(this);
-        button2.setOnClickListener(this);
-        button3.setOnClickListener(this);
-        button4.setOnClickListener(this);
-        button5.setOnClickListener(this);
-        button6.setOnClickListener(this);
-        button7.setOnClickListener(this);
-        button8.setOnClickListener(this);
-        button9.setOnClickListener(this);
-        button0.setOnClickListener(this);
-        buttonMinus.setOnClickListener(this);
-        buttonPlus.setOnClickListener(this);
-        buttonMultiply.setOnClickListener(this);
-        buttonDivision.setOnClickListener(this);
-        buttonEquality.setOnClickListener(this);
+        button1.setOnClickListener(MainActivity.this);
+        button2.setOnClickListener(MainActivity.this);
+        button3.setOnClickListener(MainActivity.this);
+        button4.setOnClickListener(MainActivity.this);
+        button5.setOnClickListener(MainActivity.this);
+        button6.setOnClickListener(MainActivity.this);
+        button7.setOnClickListener(MainActivity.this);
+        button8.setOnClickListener(MainActivity.this);
+        button9.setOnClickListener(MainActivity.this);
+        button0.setOnClickListener(MainActivity.this);
+        buttonMinus.setOnClickListener(MainActivity.this);
+        buttonPlus.setOnClickListener(MainActivity.this);
+        buttonMultiply.setOnClickListener(MainActivity.this);
+        buttonDivision.setOnClickListener(MainActivity.this);
+        buttonEquality.setOnClickListener(MainActivity.this);
+
+        buttonSettings.setOnClickListener(MainActivity.this);
     }
 
     private void initView() {
         textView = findViewById(R.id.appCompatTextView);
+
         button1 = findViewById(R.id.button1);
         button2 = findViewById(R.id.button2);
         button3 = findViewById(R.id.button3);
@@ -187,6 +206,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonMultiply = findViewById(R.id.buttonMultiply);
         buttonDivision = findViewById(R.id.buttonDivision);
         buttonEquality = findViewById(R.id.buttonEquality);
+
+        buttonSettings = findViewById(R.id.buttonSettings);
     }
 
     private void makeToast(String message) {
