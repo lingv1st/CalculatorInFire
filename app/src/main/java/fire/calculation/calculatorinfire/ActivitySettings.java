@@ -15,6 +15,7 @@ public class ActivitySettings extends AppCompatActivity implements View.OnClickL
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
@@ -25,9 +26,12 @@ public class ActivitySettings extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.buttonTheme1:
-//                setTheme(R.style);
+                setTheme(R.style.Theme);
+                recreate();
                 break;
             case R.id.buttonTheme2:
+                setTheme(R.style.ThemeDark);
+                recreate();
                 break;
             default:
                 break;
