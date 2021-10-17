@@ -32,23 +32,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button buttonEquality;
     Button buttonSettings;
 
-    Resources.Theme currentTheme;
-
     private final static String CALC = "CALC";
     private final static String TAG = "[LifeCycleOfActivity]";
-    private final static String THEME = "THEME";
 
     Calculation calculation = new Calculation();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
 
         initView();
         initListeners();
-        makeToast("onCreate");
+
+        makeToast("onCreate Main");
     }
 
     /* Проверки состояний жизненного цикла Activity
@@ -57,13 +54,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onStart();
         makeToast("onStart");
     }
-
+    */
     @Override
     protected void onResume() {
         super.onResume();
-        makeToast("onResume");
+        makeToast("onResume"); //TODO добавить заполнение TextView из сохраненного состояния
     }
-
+    /*
     @Override
     protected void onPause() {
         super.onPause();
@@ -139,8 +136,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.buttonSettings:
                 Intent runSettings = new Intent(MainActivity.this, ActivitySettings.class);
-                currentTheme = getTheme();
-                runSettings.putExtra(THEME, String.valueOf(currentTheme));
+//                runSettings.putExtr
                 startActivity(runSettings);
                 break;
             default:
@@ -163,8 +159,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        calculation = (Calculation) savedInstanceState.getParcelable(CALC);
-        textView.setText(calculation.getExpressionString());// getMainRepresentation());
+        calculation = savedInstanceState.getParcelable(CALC);
+        textView.setText(calculation.getExpressionString());
         makeToast("onRestoreInstanceState");
     }
 
@@ -210,7 +206,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonSettings = findViewById(R.id.buttonSettings);
     }
 
-    private void makeToast(String message) {
+    static void makeToast(String message) {
         Log.d(TAG, message);
     }
 

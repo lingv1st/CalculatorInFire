@@ -39,8 +39,6 @@ public class Calculation implements Parcelable {
 
     public void add(char symbol) {
 
-        //if (!expResult.isEmpty()) { clearExpResult(); }
-
         if (calculated) {
             expression.delete(0, expression.length());
             clearExpResult();
