@@ -14,7 +14,7 @@
         <!-- Customize your theme here. -->
         <item name="srcCompat">@drawable/moon3525344</item>
         <item name="android:backgroundTint">@color/my_color_primaryVariant</item>
-        <item name="android:textColor">@color/my_color_onPrimary</item>
+        <item name="android:textColor">@color/my_color_primaryVariant</item>
         <item name="android:insetLeft">@dimen/buttonInset</item>
     </style>
 </resources>
