@@ -143,11 +143,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             default:
                 throw new IllegalStateException("Unexpected value: " + view.getId());
         }
-        if (calculation.getExpResult().isEmpty()) {
-            textView.setText(calculation.getExpressionString());
-        } else {
-            textView.setText(calculation.getExpResult());
-        }
+
+        setTextViewExpression(calculation);
     }
 
     @Override
@@ -161,8 +158,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         calculation = savedInstanceState.getParcelable(CALC);
-        textView.setText(calculation.getExpressionString());
+
+        setTextViewExpression(calculation);
+
         makeToast("onRestoreInstanceState");
+    }
+
+    private void setTextViewExpression(@NonNull Calculation calculation) {
+        if (calculation.getExpResult().isEmpty()) {
+            textView.setText(calculation.getExpressionString());
+        } else {
+            textView.setText(calculation.getExpResult());
+        }
     }
 
     private void initListeners() {
