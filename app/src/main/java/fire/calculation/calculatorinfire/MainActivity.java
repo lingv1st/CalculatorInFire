@@ -3,18 +3,16 @@ package fire.calculation.calculatorinfire;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.res.Configuration;
+import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.ArrayList;
-
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements Constants {
 
     TextView textView;
     Button button1;
@@ -32,40 +30,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button buttonMultiply;
     Button buttonDivision;
     Button buttonEquality;
-    private final static String CALC = "CALC";
-    private final static String TAG = "[LifeCycleOfActivity]";
+    Button buttonSettings;
+
+    final String sayHi = "Hello, I am your Daddy"; // its hardcode!
+
+    private final static String TEXT = "PARAM-PAM-PAM";
 
     Calculation calculation = new Calculation();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                setContentView(R.layout.activity_main);
-        }
-
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            setContentView(R.layout.activity_main_landscape);
-        }
+        setContentView(R.layout.activity_main);
 
         initView();
         initListeners();
-        makeToast("onCreate");
+
+        makeToast("onCreate Main");
     }
 
+    /* Проверки состояний жизненного цикла Activity
     @Override
     protected void onStart() {
         super.onStart();
         makeToast("onStart");
     }
-
+    */
     @Override
     protected void onResume() {
         super.onResume();
-        makeToast("onResume");
+//        onRestoreInstanceState(savedInstanceState);
+        makeToast("onResume"); //TODO добавить заполнение TextView из сохраненного состояния
     }
-
+    /*
     @Override
     protected void onPause() {
         super.onPause();
@@ -89,62 +86,69 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onDestroy();
         makeToast("onDestroy");
     }
+    */
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.button1:
-                calculation.add('1');
-                break;
-            case R.id.button2:
-                calculation.add('2');
-                break;
-            case R.id.button3:
-                calculation.add('3');
-                break;
-            case R.id.button4:
-                calculation.add('4');
-                break;
-            case R.id.button5:
-                calculation.add('5');
-                break;
-            case R.id.button6:
-                calculation.add('6');
-                break;
-            case R.id.button7:
-                calculation.add('7');
-                break;
-            case R.id.button8:
-                calculation.add('8');
-                break;
-            case R.id.button9:
-                calculation.add('9');
-                break;
-            case R.id.button0:
-                calculation.add('0');
-                break;
-            case R.id.buttonMinus:
-                calculation.add('-');
-                break;
-            case R.id.buttonPlus:
-                calculation.add('+');
-                break;
-            case R.id.buttonMultiply:
-                calculation.add('*');
-                break;
-            case R.id.buttonDivision:
-                calculation.add('/');
-                break;
-            case R.id.buttonEquality:
-                //textView.setText("=");
-                textView.setText(calculation.calculate());
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + view.getId());
+    View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()) {
+                case R.id.button1:
+                    calculation.add('1');
+                    break;
+                case R.id.button2:
+                    calculation.add('2');
+                    break;
+                case R.id.button3:
+                    calculation.add('3');
+                    break;
+                case R.id.button4:
+                    calculation.add('4');
+                    break;
+                case R.id.button5:
+                    calculation.add('5');
+                    break;
+                case R.id.button6:
+                    calculation.add('6');
+                    break;
+                case R.id.button7:
+                    calculation.add('7');
+                    break;
+                case R.id.button8:
+                    calculation.add('8');
+                    break;
+                case R.id.button9:
+                    calculation.add('9');
+                    break;
+                case R.id.button0:
+                    calculation.add('0');
+                    break;
+                case R.id.buttonMinus:
+                    calculation.add('-');
+                    break;
+                case R.id.buttonPlus:
+                    calculation.add('+');
+                    break;
+                case R.id.buttonMultiply:
+                    calculation.add('*');
+                    break;
+                case R.id.buttonDivision:
+                    calculation.add('/');
+                    break;
+                case R.id.buttonEquality:
+                    calculation.calculate();
+                    break;
+                case R.id.buttonSettings:
+                    Intent runSettings = new Intent(MainActivity.this, ActivitySettings.class);
+                    runSettings.putExtra(SAYHI, textView.getText());
+                    startActivity(runSettings);
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + view.getId());
+            }
+
+            setTextViewExpression(calculation);
         }
-
-        textView.setText(calculation.getMainRepresentation());
-    }
+    };
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
@@ -156,31 +160,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        calculation = (Calculation) savedInstanceState.getParcelable(CALC);
-        textView.setText(calculation.getMainRepresentation());
+        calculation = savedInstanceState.getParcelable(CALC);
+
+        setTextViewExpression(calculation);
+
         makeToast("onRestoreInstanceState");
     }
 
-    private void initListeners() {
-        button1.setOnClickListener(this);
-        button2.setOnClickListener(this);
-        button3.setOnClickListener(this);
-        button4.setOnClickListener(this);
-        button5.setOnClickListener(this);
-        button6.setOnClickListener(this);
-        button7.setOnClickListener(this);
-        button8.setOnClickListener(this);
-        button9.setOnClickListener(this);
-        button0.setOnClickListener(this);
-        buttonMinus.setOnClickListener(this);
-        buttonPlus.setOnClickListener(this);
-        buttonMultiply.setOnClickListener(this);
-        buttonDivision.setOnClickListener(this);
-        buttonEquality.setOnClickListener(this);
+    private void setTextViewExpression(@NonNull Calculation calculation) {
+        if (calculation.getExpResult().isEmpty()) {
+            textView.setText(calculation.getExpressionString());
+        } else {
+            textView.setText(calculation.getExpResult());
+        }
     }
 
     private void initView() {
         textView = findViewById(R.id.appCompatTextView);
+
         button1 = findViewById(R.id.button1);
         button2 = findViewById(R.id.button2);
         button3 = findViewById(R.id.button3);
@@ -196,9 +193,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonMultiply = findViewById(R.id.buttonMultiply);
         buttonDivision = findViewById(R.id.buttonDivision);
         buttonEquality = findViewById(R.id.buttonEquality);
+
+        buttonSettings = findViewById(R.id.buttonSettings);
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        if (bundle == null) {
+            return;
+        }
+        String text = bundle.getString(TEXT);
+
+        textView.setText(text);
     }
 
-    private void makeToast(String message) {
+    private void initListeners() {
+        button1.setOnClickListener(onClickListener);
+        button2.setOnClickListener(onClickListener);
+        button3.setOnClickListener(onClickListener);
+        button4.setOnClickListener(onClickListener);
+        button5.setOnClickListener(onClickListener);
+        button6.setOnClickListener(onClickListener);
+        button7.setOnClickListener(onClickListener);
+        button8.setOnClickListener(onClickListener);
+        button9.setOnClickListener(onClickListener);
+        button0.setOnClickListener(onClickListener);
+        buttonMinus.setOnClickListener(onClickListener);
+        buttonPlus.setOnClickListener(onClickListener);
+        buttonMultiply.setOnClickListener(onClickListener);
+        buttonDivision.setOnClickListener(onClickListener);
+        buttonEquality.setOnClickListener(onClickListener);
+
+        buttonSettings.setOnClickListener(onClickListener);
+    }
+
+    static void makeToast(String message) {
         Log.d(TAG, message);
     }
 

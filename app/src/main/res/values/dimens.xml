@@ -6,4 +6,5 @@
     <dimen name="elementSizeByFour">320dp</dimen>
     <dimen name="textSize">12pt</dimen>
     <dimen name="marginDefault">10dp</dimen>
+    <dimen name="buttonInset">2dp</dimen>
 </resources>

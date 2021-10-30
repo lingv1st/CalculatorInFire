@@ -3,11 +3,23 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/doThis/programming/AndroidStudioProjects/CalculatorInFire/app/src/main/res/layout-land/activity_main.xml" value="0.1" />
+        <entry key="..\:/doThis/programming/AndroidStudioProjects/CalculatorInFire/app/src/main/res/layout/activity_main.xml" value="0.11643835616438356" />
         <entry key="..\:/programming/AndroidStudioProjects/CalculatorInFire/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.5703125" />
         <entry key="..\:/programming/AndroidStudioProjects/CalculatorInFire/app/src/main/res/drawable/button_parameters.xml" value="0.5703125" />
         <entry key="..\:/programming/AndroidStudioProjects/CalculatorInFire/app/src/main/res/drawable/ic_launcher_background.xml" value="0.5703125" />
-        <entry key="..\:/programming/AndroidStudioProjects/CalculatorInFire/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/programming/AndroidStudioProjects/CalculatorInFire/app/src/main/res/layout-land/activity_main.xml" value="0.16709844559585493" />
+        <entry key="..\:/programming/AndroidStudioProjects/CalculatorInFire/app/src/main/res/layout/activity_main.xml" value="0.18" />
+        <entry key="..\:/programming/AndroidStudioProjects/CalculatorInFire/app/src/main/res/layout/activity_main__material_landscape.xml" value="0.27564102564102566" />
+        <entry key="..\:/programming/AndroidStudioProjects/CalculatorInFire/app/src/main/res/layout/activity_main_appCompatButton.xml" value="0.20462962962962963" />
+        <entry key="..\:/programming/AndroidStudioProjects/CalculatorInFire/app/src/main/res/layout/activity_main_appcompatbutton.xml" value="0.2658119658119658" />
         <entry key="..\:/programming/AndroidStudioProjects/CalculatorInFire/app/src/main/res/layout/activity_main_landscape.xml" value="0.2743589743589744" />
+        <entry key="..\:/programming/AndroidStudioProjects/CalculatorInFire/app/src/main/res/layout/activity_main_landscape_appcompatbutton.xml" value="0.27564102564102566" />
+        <entry key="..\:/programming/AndroidStudioProjects/CalculatorInFire/app/src/main/res/layout/activity_main_material.xml" value="0.24953345774460145" />
+        <entry key="..\:/programming/AndroidStudioProjects/CalculatorInFire/app/src/main/res/layout/activity_main_material_landscape.xml" value="0.27564102564102566" />
+        <entry key="..\:/programming/AndroidStudioProjects/CalculatorInFire/app/src/main/res/layout/activity_options.xml" value="0.23529411764705882" />
+        <entry key="..\:/programming/AndroidStudioProjects/CalculatorInFire/app/src/main/res/layout/activity_settings.xml" value="0.21921921921921922" />
+        <entry key="..\:/programming/AndroidStudioProjects/CalculatorInFire/app/src/main/res/layout/textview_n_buttons.xml" value="0.27350427350427353" />
       </map>
     </option>
   </component>
