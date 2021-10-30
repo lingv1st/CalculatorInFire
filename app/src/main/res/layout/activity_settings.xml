@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,7 +13,7 @@
         android:orientation="vertical">
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/currentThemeTextView"
+            android:id="@+id/textViewSettings"
             android:layout_width="match_parent"
             android:layout_height="@dimen/elementSize"
             android:background="@color/white"
@@ -23,27 +22,25 @@
             android:textSize="@dimen/textSize"
             />
 
-        <com.google.android.material.checkbox.MaterialCheckBox
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/checkboxSystemTheme"
-            android:text="@string/use_system_theme"
-            android:textColor="@color/my_color_onPrimary"
-            android:textSize="@dimen/textSize"
-            />
-
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonThemeLight"
             android:layout_width="match_parent"
             android:layout_height="@dimen/elementSize"
-            android:text="theme 01"
+            android:text="@string/theme_light"
             android:textSize="@dimen/textSize" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonThemeDark"
             android:layout_width="match_parent"
             android:layout_height="@dimen/elementSize"
-            android:text="theme 02"
+            android:text="@string/theme_dark"
+            android:textSize="@dimen/textSize" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonTestIntent"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/elementSize"
+            android:text="@string/test_intent"
             android:textSize="@dimen/textSize" />
 
     </LinearLayout>

@@ -11,14 +11,22 @@
         android:theme="@style/MyTheme">
         <activity
             android:name=".ActivitySettings"
-            android:exported="true" />
+            android:exported="true">
+
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.SENDTO" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="mailto" />
             </intent-filter>
         </activity>
     </application>
