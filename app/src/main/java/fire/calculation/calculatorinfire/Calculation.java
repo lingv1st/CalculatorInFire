@@ -114,18 +114,31 @@ public class Calculation implements Parcelable {
         setExpResult(String.valueOf(result));
     }
 
+    /**
+     * @return результат вычисления выражения
+     */
     public String getExpResult() {
         return expResult;
     }
 
+    /**
+     * @param expResult результат вычисления выражения
+     */
     public void setExpResult(String expResult) {
         this.expResult = expResult;
     }
 
+    /**
+     * Очищает результат вычисленного выражения
+     * @return пустой результат вычисленного выражения (String)
+     */
     public String clearExpResult() {
         return expResult = "";
     }
 
+    /**
+     * @return само выражение в "непосчитанном" виде
+     */
     public String getExpressionString() {
         return String.valueOf(expression);
     }

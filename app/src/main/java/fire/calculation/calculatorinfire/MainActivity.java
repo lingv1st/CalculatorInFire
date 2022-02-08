@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements Constants {
 //        onRestoreInstanceState(savedInstanceState);
         makeToast("onResume"); //TODO добавить заполнение TextView из сохраненного состояния
     }
-    /*
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -84,7 +84,6 @@ public class MainActivity extends AppCompatActivity implements Constants {
         super.onDestroy();
         makeToast("onDestroy");
     }
-    */
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
